@@ -4,6 +4,8 @@ import Header from './Header';
 import Tabela from './Tabela';
 import Formulario from './Formulario';
 import './App.css';
+import PopUp from './PopUp';
+
 class App extends Component {
   state = {
     autores: [{
@@ -37,10 +39,12 @@ class App extends Component {
         }),
       }
     )
+    PopUp.exibeMensagem('success', 'Removido com sucesso');
   }
 
   escutadorDeSubmit = autor => {
-    this.setState({ autores: [...this.state.autores, autor] })
+    this.setState({ autores: [...this.state.autores, autor] });
+    PopUp.exibeMensagem('success', 'Adicionado com sucesso');
   }
 
   render() {
