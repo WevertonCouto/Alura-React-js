@@ -27,7 +27,8 @@ class FormValidator {
     valido() {
         const validacao = {};
         this.validacoes.map(regra => {
-            validacao[regra.campo] = { isInvalid: false, message: '' }
+            validacao[regra.campo] = { isInvalid: false, message: '' };
+            return null;
         });
         return { isValid: true, ...validacao }
     }
