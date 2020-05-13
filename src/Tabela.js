@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 
-const TableHead = () => {
-    return (
-        <thead>
-            <tr>
-                <th>Autores</th>
-                <th>Livros</th>
-                <th>Preços</th>
-                <th>Remover</th>
-            </tr>
-        </thead>);
+class TableHead extends Component {
+    render() {
+        const colunas = this.props.colunas.map(v => <th>{v.nome}</th>);
+        return (
+            <thead>
+                <tr key="0">
+                    {colunas}
+                </tr>
+            </thead>);
+    }
 }
 
 const TableBody = props => {
     const linhas = props.autores.map((l, i) => {
         return (
             <tr key={i}>
-                <td>{l.nome}</td>
-                <td>{l.livro}</td>
-                <td>{l.preco}</td>
-                <td><button onClick={() => props.removeAutor(i)} className="btn waves-effects waves-light indigo lighten-2">Remover</button></td>
+                {props.colunas.map(v => {
+                    if (v.remover != null) {
+                        return <td><button onClick={() => v.remover(i)} className="btn waves-effects waves-light indigo lighten-2">Remover</button></td>
+                    }
+                    return <td>{l[v.prop]}</td>
+                })}
             </tr>
         )
     });
@@ -32,10 +34,10 @@ const TableBody = props => {
 
 class Tabela extends Component {
     render() {
-        const { autores, removeAutor } = this.props;
+        const { autores, removeAutor, colunas } = this.props;
         return (<table className="centered highlight">
-            <TableHead />
-            <TableBody autores={autores} removeAutor={removeAutor} />
+            <TableHead colunas={colunas} />
+            <TableBody autores={autores} removeAutor={removeAutor} colunas={colunas} />
         </table>);
     }
 }

@@ -19,19 +19,19 @@ class Formulario extends Component {
         }, {
             campo: 'preco',
             metodo: 'isInt',
-            args: [{min: 0, max: 99999}],
+            args: [{ min: 0, max: 99999 }],
             validaQuando: true,
             mensagem: 'Ente com um valor número'
         }]);
 
-        
+
         this.stateInicial = {
             nome: '',
             livro: '',
             preco: '',
             validacao: this.validador.valido()
         }
-        
+
         this.state = this.stateInicial;
     }
 
@@ -50,14 +50,14 @@ class Formulario extends Component {
                 this.stateInicial
             )
         } else {
-            const {nome, livro, preco} = validacao;
+            const { nome, livro, preco } = validacao;
             const campos = [nome, livro, preco];
             const camposInvalidos = campos.filter(elem => {
                 return elem.isInvalid;
             });
             camposInvalidos.forEach(campo => {
                 console.log(campo);
-                PopUp.exibeMensagem('error', campo.message); 
+                PopUp.exibeMensagem('error', campo.message);
             });
         }
     }

@@ -6,6 +6,7 @@ import Formulario from './Formulario';
 import './App.css';
 import PopUp from './PopUp';
 
+
 class App extends Component {
   state = {
     autores: [{
@@ -51,7 +52,30 @@ class App extends Component {
     return (<Fragment>
       <Header />
       <div className="container mb-10">
-        <Tabela autores={this.state.autores} removeAutor={this.removeAutor} />
+        <h1>Casa do Código</h1>
+        <Tabela autores={this.state.autores} removeAutor={this.removeAutor} colunas={
+          [
+            {
+              nome: 'Autores',
+              prop: 'nome',
+              remover: null
+            },
+            {
+              nome: 'Livros',
+              prop: 'livro',
+              remover: null
+            },
+            {
+              nome: 'Preços',
+              prop: 'preco',
+              remover: null
+            },
+            {
+              nome: 'Remover',
+              remover: (i) => this.removeAutor(i)
+            }
+          ]
+        } />
         <Formulario escutadorDeSubmit={this.escutadorDeSubmit} />
       </div>
     </Fragment>);
