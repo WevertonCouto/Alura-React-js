@@ -13,12 +13,12 @@ class TableHead extends Component {
 }
 
 const TableBody = props => {
-    const linhas = props.autores.map((l, i) => {
+    const linhas = props.autores.map((l) => {
         return (
-            <tr key={i}>
+            <tr key={l.id}>
                 {props.colunas.map(v => {
                     if (v.remover != null) {
-                        return <td><button onClick={() => v.remover(i)} className="btn waves-effects waves-light indigo lighten-2">Remover</button></td>
+                        return <td><button onClick={() => v.remover(l.id)} className="btn waves-effects waves-light indigo lighten-2">Remover</button></td>
                     }
                     return <td>{l[v.prop]}</td>
                 })}

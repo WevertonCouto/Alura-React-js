@@ -1,38 +1,46 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import Header from './Header';
 import Tabela from './Tabela';
+import ApiService from './ApiService';
 
-const Livros = () => {
-    const autores = [{
-        livro: 'React'
-    },
-    {
-        livro: 'Java',
-    },
-    {
-        livro: 'Design',
-    },
-    {
-        livro: 'DevOps',
-    }];
 
-    return (
-        <Fragment>
-            <Header />
-            <div className="container">
-                <h1>Página de Livros</h1>
-                <Tabela autores={autores} colunas={
-                    [
-                        {
-                            nome: 'Livros',
-                            prop: 'livro',
-                            remover: null
-                        }
-                    ]
-                } />
-            </div>
-        </Fragment>
-    );
+class Livros extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            livros: []
+        }
+    }
+
+    componentDidMount() {
+        ApiService.ListaLivros()
+        .then(res => {
+            this.setState(
+                {
+                    livros: [...this.state.livros, ...res.data]
+                }
+            )
+        });
+    }
+
+    render() {
+        return (
+            <Fragment>
+                <Header />
+                <div className="container">
+                    <h1>Página de Livros</h1>
+                    <Tabela autores={this.state.livros} colunas={
+                        [
+                            {
+                                nome: 'Livros',
+                                prop: 'livro',
+                                remover: null
+                            }
+                        ]
+                    } />
+                </div>
+            </Fragment>
+        );
+    }
 }
-
 export default Livros;
