@@ -67,6 +67,7 @@ class Home extends Component {
       <Header />
       <div className="container mb-10">
         <h1>Casa do Código</h1>
+        <Formulario escutadorDeSubmit={this.escutadorDeSubmit} />
         <Tabela autores={this.state.autores} removeAutor={this.removeAutor} colunas={
           [
             {
@@ -90,7 +91,6 @@ class Home extends Component {
             }
           ]
         } />
-        <Formulario escutadorDeSubmit={this.escutadorDeSubmit} />
       </div>
     </Fragment>);
   }
