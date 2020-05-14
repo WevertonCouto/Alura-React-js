@@ -1,44 +1,51 @@
 import React, { Component } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 
-class TableHead extends Component {
+class TableHeader extends Component {
     render() {
-        const colunas = this.props.colunas.map(v => <th>{v.nome}</th>);
+        const colunas = this.props.colunas.map(v => <TableCell>{v.nome}</TableCell>);
         return (
-            <thead>
-                <tr key="0">
+            <TableHead>
+                <TableRow key="0">
                     {colunas}
-                </tr>
-            </thead>);
+                </TableRow>
+            </TableHead>);
     }
 }
 
-const TableBody = props => {
+const TableLines = props => {
     const linhas = props.autores.map((l) => {
         return (
-            <tr key={l.id}>
+            <TableRow key={l.id}>
                 {props.colunas.map(v => {
                     if (v.remover != null) {
-                        return <td><button onClick={() => v.remover(l.id)} className="btn waves-effects waves-light indigo lighten-2">Remover</button></td>
+                        return <TableCell><button onClick={() => v.remover(l.id)} variant="contained" color="primary">Remover</button></TableCell>
                     }
-                    return <td>{l[v.prop]}</td>
+                    return <TableCell>{l[v.prop]}</TableCell>
                 })}
-            </tr>
+            </TableRow>
         )
     });
     return (
-        <tbody>
+        <TableBody>
             {linhas}
-        </tbody>
+        </TableBody>
     )
 }
 
 class Tabela extends Component {
     render() {
         const { autores, removeAutor, colunas } = this.props;
-        return (<table className="centered highlight">
-            <TableHead colunas={colunas} />
-            <TableBody autores={autores} removeAutor={removeAutor} colunas={colunas} />
-        </table>);
+        return (<Table>
+            <TableHeader colunas={colunas} />
+            <TableLines autores={autores} removeAutor={removeAutor} colunas={colunas} />
+        </Table>);
     }
 }
 
