@@ -4,6 +4,7 @@ import PopUp from '../../Utils/PopUp';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Toast from '../Toast/Toast';
 
 class Formulario extends Component {
 
@@ -32,7 +33,8 @@ class Formulario extends Component {
             nome: '',
             livro: '',
             preco: '',
-            validacao: this.validador.valido()
+            validacao: this.validador.valido(),
+            open: true
         }
 
         this.state = this.stateInicial;
@@ -69,7 +71,13 @@ class Formulario extends Component {
 
         const { nome, livro, preco } = this.state;
 
-        return (<form>
+        return (
+        <>
+        <Toast 
+            open={this.state.open} 
+            handleClose={() => this.setState({open: false})}>
+        </Toast>
+        <form>
             <Grid container spacing="2" alignItems="center">
                 <Grid item>
                     <TextField 
@@ -106,7 +114,7 @@ class Formulario extends Component {
                     </Button>
                 </Grid>
             </Grid>
-        </form>);
+        </form></>);
     }
 }
 export default Formulario;
