@@ -5,7 +5,7 @@ import Tabela from '../../Components/Tabela/Tabela';
 import Formulario from '../../Components/Formulario/Formulario';
 import './Home.css';
 import PopUp from '../../Utils/PopUp';
-import ApiService from '../../Utils/ApiService';
+import ApiService from '../../Services/ApiService';
 
 class Home extends Component {
 

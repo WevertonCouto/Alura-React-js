@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import Header from '../../Components/Header/Header';
 import Tabela from '../../Components/Tabela/Tabela';
-import ApiService from '../../Utils/ApiService';
+import ApiService from '../../Services/ApiService';
 import PopUp from '../../Utils/PopUp';
 
 class Livros extends Component {

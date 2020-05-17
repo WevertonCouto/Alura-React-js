@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FormValidator from '../../Utils/FormValidator';
-import PopUp from '../../Utils/PopUp';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
